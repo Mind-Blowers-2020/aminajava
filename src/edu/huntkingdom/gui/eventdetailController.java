@@ -9,6 +9,7 @@ import edu.huntkingdom.entities.Evenement;
 import edu.huntkingdom.services.ServiceEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -83,6 +84,8 @@ ServiceEvent se=new ServiceEvent();
         System.out.println("Selected item: " + e.getDescription());
         Evenement selected = new Evenement();
                    selected=e;
+                   webEngine.getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
+            if (Worker.State.SUCCEEDED.equals(newValue)) {
             try {
                         System.out.println("Selected item: " + e.getDescription());
                     String s=    e.getLatlng();
@@ -97,7 +100,7 @@ ServiceEvent se=new ServiceEvent();
                     }
            
         }
-        
+                           });}
 
                  
         // TODO

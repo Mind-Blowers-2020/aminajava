@@ -362,15 +362,16 @@ try {
     }
 void refrech()
 {txtimage.clear();
-txtaddress.clear();
+//txtaddress.clear();
 txtdescription.clear();
 txtname.clear();
 txtnumber.clear();
 txtprice.clear();
+
 }
     @FXML
     private void addevent(ActionEvent event) {
-        if(verifNomEvent())
+        if(verifNomEvent()&&verifDate())
         {
         String l="";
         if (combotype.getSelectionModel().isEmpty()) {
@@ -433,6 +434,22 @@ String s= comboadresse.getValue();
             alert.setTitle("Validation des champs");
             alert.setHeaderText(null);
             alert.setContentText("Verifier le nom de l'event");
+            alert.showAndWait();
+            return false;
+        }
+      }
+      
+        private boolean verifDate() {
+       Timestamp dated = Timestamp.valueOf(combodateD.getValue().atTime(LocalTime.MIDNIGHT));
+
+        Timestamp datef = Timestamp.valueOf(combodateF.getValue().atTime(LocalTime.MIDNIGHT));
+        if (dated.before(datef)) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation des champs");
+            alert.setHeaderText(null);
+            alert.setContentText("date début inférieur à date fin");
             alert.showAndWait();
             return false;
         }

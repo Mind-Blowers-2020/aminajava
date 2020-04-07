@@ -130,7 +130,7 @@
                      <children>
                         <HBox layoutX="115.0">
                            <children>
-                              <VBox spacing="15.0">
+                              <VBox prefHeight="200.0" prefWidth="200.0" spacing="15.0">
                                  <children>
                                     <Label text="Name event">
                                        <VBox.margin>
@@ -179,10 +179,10 @@
                                     </Label>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="281.0" prefWidth="178.0" spacing="20.0">
+                              <VBox prefHeight="408.0" prefWidth="193.0" spacing="20.0">
                                  <children>
                                     <TextField fx:id="txtname" />
-                                    <TextField fx:id="txtaddress" />
+                                    <ComboBox fx:id="comboadresse" prefHeight="25.0" prefWidth="177.0" />
                                     <ComboBox fx:id="combotype" prefHeight="25.0" prefWidth="187.0" />
                                     <TextField fx:id="txtprice" />
                                     <TextField fx:id="txtnumber" />
@@ -190,17 +190,16 @@
                                     <HBox>
                                        <children>
                                           <TextField fx:id="txtimage" />
-                                          <Button mnemonicParsing="false" onAction="#upload" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: #6DAC4FFF;" text="upload" />
+                                          <Button mnemonicParsing="false" onAction="#upload" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: #6DAC4FFF;" text="image" />
                                        </children>
                                     </HBox>
                                     <DatePicker fx:id="combodateD" style="-fx-background-image: #6DAC4FFF;" />
                                     <DatePicker fx:id="combodateF" />
-                                    <Button mnemonicParsing="false" onAction="#addevent" prefHeight="35.0" prefWidth="102.0" style="-fx-background-color: #6DAC4FFF;" text="Add" />
+                                    <Button mnemonicParsing="false" onAction="#addevent" prefHeight="35.0" prefWidth="102.0" style="-fx-background-color: #6DAC4FFF;" text="ajouter" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
-                        <ComboBox fx:id="comboadresse" layoutX="389.0" layoutY="44.0" prefWidth="150.0" />
                      </children></AnchorPane>
               </content>
             </Tab>

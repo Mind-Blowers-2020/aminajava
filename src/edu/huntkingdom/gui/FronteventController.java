@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -368,6 +370,8 @@ txtprice.clear();
 }
     @FXML
     private void addevent(ActionEvent event) {
+        if(verifNomEvent())
+        {
         String l="";
         if (combotype.getSelectionModel().isEmpty()) {
             Alert selectEventAlert = new Alert(Alert.AlertType.WARNING);
@@ -408,7 +412,7 @@ String s= comboadresse.getValue();
             l=36.85724000000005+";"+10.189320000000066;
         }
         EventCours e = new EventCours(txtname.getText(), comboadresse.getValue(), (String) combotype.getValue(), getTxtprice(), getTxtnumber(), txtdescription.getText(), dated, FilenameInserver, datef,l);
-        
+       
         ser.ajouter(e);
         refrech();
 
@@ -418,7 +422,20 @@ String s= comboadresse.getValue();
         succAddBookAlert.setContentText("Event added successfully!");
         succAddBookAlert.showAndWait();
 
-    }
-    
+    }}
+      private boolean verifNomEvent() {
+        Pattern p = Pattern.compile("[a-zA-Z]+");
+        Matcher m = p.matcher(txtname.getText());
+        if (m.find() && m.group().equals(txtname.getText())) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation des champs");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifier le nom de l'event");
+            alert.showAndWait();
+            return false;
+        }
+      }
 
 }

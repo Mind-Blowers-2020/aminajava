@@ -16,10 +16,13 @@ import javafx.scene.control.TextField;
 import edu.huntkingdom.services.ServiceParticipant;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -52,11 +55,13 @@ ServiceEvent se=new ServiceEvent();
     @FXML
     private void participer(ActionEvent event) {
         Date date = new Date();  
-                Timestamp ts=new Timestamp(date.getTime());  
+                Timestamp ts=new Timestamp(date.getTime()); 
+                if (verifNom()&&verifPrenom())
+                {
         Participant p=new Participant(0, Boolean.FALSE, Integer.parseInt(eventid), ts, nom.getText(), prenom.getText());;
         se.decrementqte(Integer.parseInt(eventid));
         ser.ajouter(p);
-        refrech();
+        refrech();}
        
     }
 
@@ -67,5 +72,35 @@ ServiceEvent se=new ServiceEvent();
             appStage.close();
         
     }
+    
+    private boolean verifNom() {
+        Pattern p = Pattern.compile("[a-zA-Z]+");
+        Matcher m = p.matcher(nom.getText());
+        if (m.find() && m.group().equals(nom.getText())) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation des champs");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifier le nom de participant");
+            alert.showAndWait();
+            return false;
+        }
+      }
+    
+     private boolean verifPrenom() {
+        Pattern p = Pattern.compile("[a-zA-Z]+");
+        Matcher m = p.matcher(nom.getText());
+        if (m.find() && m.group().equals(prenom.getText())) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation des champs");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifier le prenom de participant");
+            alert.showAndWait();
+            return false;
+        }
+      }
     
 }

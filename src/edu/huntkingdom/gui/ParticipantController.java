@@ -24,6 +24,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import edu.huntkingdom.services.ServiceEvent;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.stream.Collectors;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -46,6 +54,8 @@ public class ParticipantController implements Initializable {
   public ObservableList<Participant> data = FXCollections.observableArrayList();
     ServiceParticipant sec = new ServiceParticipant();
     ServiceEvent se = new ServiceEvent();
+    @FXML
+    private TextField searchTF;
     
     /**
      * Initializes the controller class.
@@ -105,6 +115,37 @@ public class ParticipantController implements Initializable {
 
     @FXML
     private void modifier(ActionEvent event) {
+    }
+
+    @FXML
+    private void filter(ActionEvent event) {
+                   data.clear();
+       // System.out.println("heyy yuuu");
+        data.addAll(sec.readAll().stream().filter((art)
+               -> art.getNom().toLowerCase().contains(searchTF.getText().toLowerCase())
+                || art.getPrenom().toLowerCase().contains(searchTF.getText().toLowerCase())
+                // ctt ? bara jareb 
+                || Integer.toString(art.getEvenment()).equals(searchTF.getText())
+              //lahdha rit time stamp bech t3adhébk kifi f hedhy atten mcdh lezm recherh b dat eXD
+//                || Integer.toString(art.getPrixAchat()).equals(searchTF.getText())
+//                || Integer.toString(art.getPrixVente()).equals(searchTF.getText())
+                
+               
+        ).collect(Collectors.toList()));
+    
+    }
+
+    @FXML
+    private void stat(ActionEvent event) {
+        try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("BarChartEvent.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch (IOException e) {
+                    // e.printStackTrace();
+                }
     }
     
 }

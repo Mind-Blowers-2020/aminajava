@@ -146,6 +146,7 @@ public Evenement findbyid(int id) {
               String image = rs.getString("image");
               String adresse=rs.getString("adresse");
              String description=rs.getString("description");
+             String latlng=rs.getString("latlng");
             
           u.setNomEvent(nomEvent);
               u.setPrix(prix);
@@ -153,6 +154,7 @@ public Evenement findbyid(int id) {
               u.setNbPlaces(nbPlaces);
               u.setAdresse(adresse);
               u.setDescription(description);
+              u.setLatlng(latlng);
             }
         } catch (SQLException ex) {
             ex.getMessage();
@@ -162,7 +164,7 @@ public Evenement findbyid(int id) {
     }
 public int getquantite(int id) {
         int q = 0;
-//akeka mao ?oui
+
         String requete4 = "select nbPlaces from evenement where id=?;";
         PreparedStatement pst;
         try {
@@ -210,6 +212,29 @@ public int getquantite(int id) {
         }
 
         return u;
+    }
+    
+        public List<Evenement> eventn ()throws SQLException{
+         List<Evenement> arr = new ArrayList<>();
+
+        try {
+            //int id=rs.getInt(1);
+            ste = con.createStatement();
+            ResultSet rs = ste.executeQuery("select nomEvent,nbPlaces from evenement ");
+            while (rs.next()) {
+                String nomEvent = rs.getString("nomEvent");
+           
+                int nbPlaces = rs.getInt("nbPlaces");
+              
+
+                Evenement p = new Evenement(nomEvent, nbPlaces);
+                arr.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceEvent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return arr;
+    
     }
 
 }

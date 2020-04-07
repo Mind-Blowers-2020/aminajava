@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="740.0" stylesheets="@../utils/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.huntkingdom.gui.eventdetailController">
    <children>
       <Pane prefHeight="400.0" prefWidth="385.0" style="-fx-background-color: #fdf9f3;">
          <children>
             <Label fx:id="lblStatus" layoutX="18.0" layoutY="359.0" prefHeight="17.0" prefWidth="120.0" />
-            <Button fx:id="btnSave1" layoutX="288.0" layoutY="332.0" mnemonicParsing="false" onAction="#closeOnAction" onMouseClicked="#HandleEvents" prefHeight="55.0" prefWidth="79.0" styleClass="button2" stylesheets="@../../../../../../../Desktop/PiDev_Front/src/Styling/fullpackstyling.css" text="close" />
             <Label fx:id="nomEvent" layoutX="165.0" layoutY="29.0" prefHeight="35.0" prefWidth="176.0" text="Label">
                <font>
                   <Font name="Lato Light" size="24.0" />
@@ -45,19 +45,11 @@
                   <Font name="Lato Light" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="adresse" layoutX="155.0" layoutY="183.0" prefHeight="35.0" prefWidth="224.0">
-               <font>
-                  <Font name="Lato Light" size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="36.0" layoutY="192.0" text="adresse">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+            <Button fx:id="btnSave1" layoutX="286.0" layoutY="326.0" mnemonicParsing="false" onAction="#closeOnAction" onMouseClicked="#HandleEvents" prefHeight="55.0" prefWidth="79.0" styleClass="button2" stylesheets="@../../../../../../../Desktop/PiDev_Front/src/Styling/fullpackstyling.css" text="fermer" />
+            <WebView fx:id="webview" layoutX="24.0" layoutY="173.0" prefHeight="200.0" prefWidth="243.0" />
          </children>
       </Pane>
-      <ImageView fx:id="imagedetails" fitHeight="293.0" fitWidth="267.0" layoutX="427.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imagedetails" fitHeight="293.0" fitWidth="267.0" layoutX="427.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
       <HBox fx:id="ratinghbox" layoutX="427.0" layoutY="351.0" prefHeight="25.0" prefWidth="200.0" />
       <Label fx:id="yourratingtxt" layoutX="617.0" layoutY="352.0" prefHeight="29.0" prefWidth="66.0">
          <font>

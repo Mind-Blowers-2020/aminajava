@@ -57,6 +57,12 @@ public class Evenement {
         this.latlng = latlng;
     }
 
+    public Evenement(String nomEvent, int nbPlaces) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.nomEvent=nomEvent;
+    this.nbPlaces=nbPlaces;
+    }
+
     public int getId() {
         return id;
     }

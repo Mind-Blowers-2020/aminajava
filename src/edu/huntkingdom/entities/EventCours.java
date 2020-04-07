@@ -53,7 +53,22 @@ public class EventCours {
     }
 
     public EventCours(String text, String text0, Object value, Float txtprice, int txtnumber, String text1, String text2, Timestamp dated, Timestamp datef) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public EventCours(String nomEvent, String adresse, String type, float prix, int nbPlaces, String description, Timestamp dateDebut, String image, Timestamp dateFin, String latlng) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.nomEvent = nomEvent;
+        this.adresse = adresse;
+        this.type = type;
+        this.prix = prix;
+        this.nbPlaces = nbPlaces;
+        this.description = description;
+        this.dateDebut = dateDebut;
+        this.image = image;
+        this.dateFin = dateFin;
+        this.latlng = latlng;
+    
     }
 
     public int getId() {

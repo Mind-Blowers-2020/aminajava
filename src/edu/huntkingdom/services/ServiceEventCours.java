@@ -110,17 +110,19 @@ public class ServiceEventCours {
     public void ajouter(EventCours e) {
 
         try {
-            PreparedStatement pre = con.prepareStatement("INSERT INTO eventcours ( `id`, `nomEvent`, `adresse`, `type`,`prix`, `nbPlaces` ,`description`, `dateDebut`, `image` , `dateFin`,`latlng` ) VALUES ( NULL, ?, ?, ?, ?, ? , ? ,? ,? ,?,'amina'); ");
+            PreparedStatement pre = con.prepareStatement("INSERT INTO eventcours ( `id`, `nomEvent`, `adresse`, `type`,`prix`, `nbPlaces` ,`description`, `dateDebut`, `image` , `dateFin`,`latlng` ) VALUES ( NULL, ?, ?, ?, ?, ? , ? ,? ,? ,?,?); ");
             pre.setString(1, e.getNomEvent());
             pre.setString(2, e.getAdresse());
             pre.setString(3, e.getType());
             pre.setFloat(4, e.getPrix());
+     
           // pre.setDouble(4, 0);
             pre.setInt(5, e.getNbPlaces());
             pre.setString(6, e.getDescription());
             pre.setTimestamp(7, e.getDateDebut());
             pre.setString(8, e.getImage());
             pre.setTimestamp(9, e.getDateFin());
+                   pre.setString(10,e.getLatlng());
 
             pre.executeUpdate();
         } catch (SQLException ex) {

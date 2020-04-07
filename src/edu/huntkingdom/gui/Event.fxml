@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane id="AnchorPane" prefHeight="514.0" prefWidth="965.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.huntkingdom.gui.EventController">
    <children>
@@ -44,7 +45,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="eventTv" layoutX="10.0" layoutY="10.0" prefHeight="355.0" prefWidth="810.0">
+                        <TableView fx:id="eventTv" layoutX="10.0" layoutY="10.0" prefHeight="264.0" prefWidth="810.0">
                            <columns>
                               <TableColumn fx:id="nomEventv" prefWidth="75.0" text="nomEvent" />
                               <TableColumn fx:id="adressev" prefWidth="75.0" text="adresse" />
@@ -58,7 +59,8 @@
                               <TableColumn fx:id="latlngv" prefWidth="75.0" text="latlng" />
                            </columns>
                         </TableView>
-                        <ImageView fx:id="imageview" fitHeight="112.0" fitWidth="121.0" layoutX="518.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imageview" fitHeight="112.0" fitWidth="121.0" layoutX="826.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
+                        <WebView fx:id="webview" layoutX="133.0" layoutY="281.0" prefHeight="179.0" prefWidth="567.0" />
                      </children>
                   </AnchorPane>
                </content>

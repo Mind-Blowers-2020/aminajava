@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
@@ -49,6 +50,8 @@ public class GuideController implements Initializable {
     private TableColumn<Guide, String> typeEvent1;
  public ObservableList<Guide> data = FXCollections.observableArrayList();
     ServiceGuide sec = new ServiceGuide();
+    @FXML
+    private TextField searchTF;
     /**
      * Initializes the controller class.
      */
@@ -165,6 +168,10 @@ public class GuideController implements Initializable {
         Guide Guide = guideTV.getSelectionModel().getSelectedItem();
         Guide.setTel(Integer.parseInt(edittedCell.getNewValue().toString()));
        
+    }
+
+    @FXML
+    private void filter(ActionEvent event) {
     }
     
 }

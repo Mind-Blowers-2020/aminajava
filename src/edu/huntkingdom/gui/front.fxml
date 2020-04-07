@@ -48,8 +48,8 @@
          <right>
             <VBox prefHeight="514.0" prefWidth="135.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton onAction="#profileAction" prefHeight="82.0" prefWidth="141.0" styleClass="toolbar-button" text="profile" />
-                  <JFXButton onAction="#eventAction" prefHeight="82.0" prefWidth="147.0" styleClass="toolbar-button" text="event" />
+                  <JFXButton onAction="#profileAction" prefHeight="82.0" prefWidth="141.0" styleClass="toolbar-button" text="profil" />
+                  <JFXButton onAction="#eventAction" prefHeight="82.0" prefWidth="147.0" styleClass="toolbar-button" text="les evenements" />
                   <JFXButton onAction="#produitAction" prefHeight="82.0" prefWidth="151.0" styleClass="toolbar-button" text="produit" />
                </children>
             </VBox>

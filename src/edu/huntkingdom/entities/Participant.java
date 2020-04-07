@@ -30,6 +30,12 @@ public class Participant {
         this.prenom = prenom;
     }
 
+    public Participant(String nom, int evenement) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.nom=nom;
+    this.evenment=evenement;
+    }
+
     public String getNomEvent() {
         return nomEvent;
     }

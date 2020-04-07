@@ -20,6 +20,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 /**
@@ -47,10 +49,12 @@ public class eventdetailController extends FronteventController implements Initi
     private Label yourratingtxt;
         String productid = holdID.value;
 ServiceEvent se=new ServiceEvent();
+ private Evenement selected;
     @FXML
     private Label description;
+   // private Label adresse;
     @FXML
-    private Label adresse;
+    private WebView webview;
 
     public eventdetailController() {
         //this.id = id;
@@ -70,10 +74,35 @@ ServiceEvent se=new ServiceEvent();
             nomEvent.setText(e.getNomEvent());
             txtprix1.setText(String.valueOf(e.getPrix()));
             description.setText(e.getDescription());
-            adresse.setText(e.getAdresse());
+          ///  adresse.setText(e.getAdresse());
+          WebEngine webEngine = webview.getEngine();
+
+        URL url1 = this.getClass().getResource("/edu/huntkingdom/gui/webmaps.html");
+        webEngine.load(url1.toString());
+        webEngine.setJavaScriptEnabled(true);
+        System.out.println("Selected item: " + e.getDescription());
+        Evenement selected = new Evenement();
+                   selected=e;
+            try {
+                        System.out.println("Selected item: " + e.getDescription());
+                    String s=    e.getLatlng();
+                    String[] ch=s.split(";");
+                    String X=ch[0];
+                     String Y=ch[1];
+                    
+                        System.out.println("addpopup(" + e.getLatlng()+ ",'" + e.getDescription() + "')");
+                        webEngine.executeScript("addpopup(" + X + "," + Y + ",'" + e.getNomEvent()+ "')");
+                    } catch (Exception ex) {
+                        System.out.println("problem with script" + ex.getMessage());
+                    }
+           
+        }
+        
+
+                 
         // TODO
         
-    }    
+       
 
     @FXML
     private void HandleEvents(MouseEvent event) {

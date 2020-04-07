@@ -66,10 +66,6 @@ public class FronteventController implements Initializable {
     @FXML
     private Button participatefx;
     @FXML
-    private Button cancelfx;
-    @FXML
-    private Button printfx;
-    @FXML
     private AnchorPane Paneeventsfx1;
     @FXML
     private ImageView imageeventspanefx1;
@@ -82,10 +78,6 @@ public class FronteventController implements Initializable {
     @FXML
     private Button participatefx1;
     @FXML
-    private Button cancelfx1;
-    @FXML
-    private Button printfx1;
-    @FXML
     private AnchorPane Paneeventsfx11;
     @FXML
     private ImageView imageeventspanefx11;
@@ -97,10 +89,6 @@ public class FronteventController implements Initializable {
     private Label DateeventsInteface11;
     @FXML
     private Button participatefx2;
-    @FXML
-    private Button cancelfx2;
-    @FXML
-    private Button printfx2;
     private ObservableList<Evenement> data;
     private Connection con = null;
     ServiceEvent se = new ServiceEvent();
@@ -114,7 +102,9 @@ public class FronteventController implements Initializable {
     @FXML
     private ComboBox<String> combotype;
     public ObservableList<String> types = FXCollections.observableArrayList("peche", "chasse");
-
+@FXML
+    private ComboBox<String> comboadresse;
+public ObservableList<String> adresse = FXCollections.observableArrayList("tunis", "ariana","sousse","ben arbous","monasitir","sfax");
     @FXML
     private TextField txtprice;
     @FXML
@@ -129,6 +119,7 @@ public class FronteventController implements Initializable {
     private DatePicker combodateF;
     ServiceEventCours ser = new ServiceEventCours();
     UploadServices uploadservices = new UploadServices();
+    
 
     public int getTxtnumber() {
         return Integer.parseInt(txtnumber.getText());
@@ -144,6 +135,7 @@ public class FronteventController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         combotype.setItems(types);
+        comboadresse.setItems(adresse);
 
         data = FXCollections.observableArrayList();
         con = DataBase.getInstance().getConnection();
@@ -222,26 +214,23 @@ public class FronteventController implements Initializable {
             }
         });
 
-        imageeventspanefx1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-//            System.out.println("id:"+data.get(CurrentEvent+1).getId());
+        imageeventspanefx1.setOnMouseClicked((MouseEvent event) -> {
+            //            System.out.println("id:"+data.get(CurrentEvent+1).getId());
 //            String numberAsString = Integer.toString(data.get(CurrentEvent+1).getId());
 //            holdID.value = numberAsString;
-                String images = imageeventspanefx1.getImage().impl_getUrl();
-                int id = se.findbyImage(images.substring(27));
-                holdID.value = Integer.toString(id);
-                System.out.println("id:" + id);
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("eventdetails.fxml"));
-                    Parent root1 = (Parent) fxmlLoader.load();
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root1));
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+String images = imageeventspanefx1.getImage().impl_getUrl();
+int id = se.findbyImage(images.substring(27));
+holdID.value = Integer.toString(id);
+System.out.println("id:" + id);
+try {
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("eventdetails.fxml"));
+    Parent root1 = (Parent) fxmlLoader.load();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(root1));
+    stage.show();
+} catch (IOException e) {
+    e.printStackTrace();
+}
         });
         imageeventspanefx11.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -284,13 +273,6 @@ public class FronteventController implements Initializable {
                 }
     }
 
-    @FXML
-    private void cancel(ActionEvent event) {
-    }
-
-    @FXML
-    private void print(ActionEvent event) {
-    }
 
     @FXML
     private void participate1(ActionEvent event) {
@@ -309,13 +291,6 @@ public class FronteventController implements Initializable {
                 }
     }
 
-    @FXML
-    private void cancel1(ActionEvent event) {
-    }
-
-    @FXML
-    private void print1(ActionEvent event) {
-    }
 
     @FXML
     private void participate2(ActionEvent event) {
@@ -334,13 +309,6 @@ public class FronteventController implements Initializable {
                 }
     }
 
-    @FXML
-    private void cancel2(ActionEvent event) {
-    }
-
-    @FXML
-    private void print2(ActionEvent event) {
-    }
 
     @FXML
     private void viewmore(ActionEvent event) {
@@ -368,7 +336,6 @@ public class FronteventController implements Initializable {
         }
     }
 
-    @FXML
     private void ajouter(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
         //Scene scene = new Scene(root, 1100, 650);
@@ -401,6 +368,7 @@ txtprice.clear();
 }
     @FXML
     private void addevent(ActionEvent event) {
+        String l="";
         if (combotype.getSelectionModel().isEmpty()) {
             Alert selectEventAlert = new Alert(Alert.AlertType.WARNING);
             selectEventAlert.setTitle("Select an event");
@@ -414,8 +382,33 @@ txtprice.clear();
         Timestamp dated = Timestamp.valueOf(combodateD.getValue().atTime(LocalTime.MIDNIGHT));
 
         Timestamp datef = Timestamp.valueOf(combodateF.getValue().atTime(LocalTime.MIDNIGHT));
-
-        EventCours e = new EventCours(txtname.getText(), txtaddress.getText(), (String) combotype.getValue(), getTxtprice(), getTxtnumber(), txtdescription.getText(), dated, FilenameInserver, datef);
+String s= comboadresse.getValue();
+        System.out.println(s);
+        if (s.equals("ariana"))
+        {l=36.85724000000005+";"+10.189320000000066;
+        }
+        if (s.equals("tunis"))
+        {
+            l=33.8439408+";"+11.8801133;
+        }
+             if (s.equals("sousse"))
+        {
+            l=35.829030000000046+";"+10.63778000000002;
+        }
+               if (s.equals("ben arous"))
+        {
+        }
+           if (s.equals("sfax"))
+        {
+            l=36.85724000000005+";"+10.189320000000066;
+        }
+           
+          if (s.equals("monastir"))
+        {
+            l=36.85724000000005+";"+10.189320000000066;
+        }
+        EventCours e = new EventCours(txtname.getText(), comboadresse.getValue(), (String) combotype.getValue(), getTxtprice(), getTxtnumber(), txtdescription.getText(), dated, FilenameInserver, datef,l);
+        
         ser.ajouter(e);
         refrech();
 

@@ -97,4 +97,26 @@ ServiceEvent se=new ServiceEvent();
         }
     }
 
+         public List<Participant> partn ()throws SQLException{
+         List<Participant> arr = new ArrayList<>();
+
+        try {
+            //int id=rs.getInt(1);
+            ste = con.createStatement();
+            ResultSet rs = ste.executeQuery("select nom,evenement from particpant ");
+            while (rs.next()) {
+                String nom = rs.getString("nom");
+           
+                int evenement = rs.getInt("evenement");
+              
+
+                Participant p = new Participant(nom, evenement);
+                arr.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceEvent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return arr;
+    
+    }
 }

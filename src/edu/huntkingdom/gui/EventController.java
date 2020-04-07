@@ -5,11 +5,20 @@
  */
 package edu.huntkingdom.gui;
 
+
+
+
 import edu.huntkingdom.entities.EventCours;
 import edu.huntkingdom.entities.Evenement;
 import edu.huntkingdom.services.ServiceEventCours;
 import edu.huntkingdom.services.ServiceEvent;
+import edu.huntkingdom.utils.DataBase;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Optional;
@@ -28,6 +37,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.swing.text.Position;
+import javax.swing.text.Segment;
+
 
 /**
  * FXML Controller class
@@ -90,7 +112,11 @@ public class EventController implements Initializable {
     ServiceEvent se = new ServiceEvent();
     @FXML
     private ImageView imageview;
-//me kentch tatla3 khater nafs l id image image badaltha khdeùt jareb
+    @FXML
+    private WebView webview;
+       Connection cn2;
+       private Evenement selected;
+
     /**
      * Initializes the controller class.
      */
@@ -147,6 +173,41 @@ public class EventController implements Initializable {
         this.nomEvent.setCellFactory(TextFieldTableCell.forTableColumn());
         this.type.setCellFactory(TextFieldTableCell.forTableColumn());
          this.adresse.setCellFactory(TextFieldTableCell.forTableColumn());
+         
+         
+         
+         WebEngine webEngine = webview.getEngine();
+
+        URL url1 = this.getClass().getResource("/edu/huntkingdom/gui/webmaps.html");
+        webEngine.load(url1.toString());
+        webEngine.setJavaScriptEnabled(true);
+        
+        ServiceEvent evr = new ServiceEvent();
+        cn2 = DataBase.getInstance().getConnection();
+       
+     
+
+        eventTv.setOnMouseClicked(( MouseEvent event) -> {
+        if(event.getButton().equals(MouseButton.PRIMARY)){
+            System.out.println(eventTv.getSelectionModel().getSelectedItem());
+            selected=eventTv.getSelectionModel().getSelectedItem();
+            try {
+                        System.out.println("Selected item: " + selected.getDescription());
+                    String s=    selected.getLatlng();
+                    String[] ch=s.split(";");
+                    String X=ch[0];
+                     String Y=ch[1];
+                    
+                        System.out.println("addpopup(" + selected.getLatlng()+ ",'" + selected.getDescription() + "')");
+                        webEngine.executeScript("addpopup(" + X + "," + Y + ",'" + selected.getNomEvent()+ "')");
+                    } catch (Exception e) {
+                        System.out.println("problem with script" + e.getMessage());
+                    }
+           
+        }
+        
+        
+    });
 
     }
 
@@ -280,6 +341,11 @@ public class EventController implements Initializable {
         EventCours eventcours = eventcoursTV.getSelectionModel().getSelectedItem();
         eventcours.setAdresse(edittedCell.getNewValue().toString());
        
+    }
+//wala stana hezou kima howa men hne
+    @FXML
+    private void print(ActionEvent event)  {
+   
     }
     
 }

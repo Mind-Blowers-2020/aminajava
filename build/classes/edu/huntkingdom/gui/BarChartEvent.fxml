@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="464.0" prefWidth="711.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="edu.huntkingdom.gui.BarChartEventController">
+   <children>
+      <BarChart fx:id="chart" layoutX="18.0" layoutY="14.0" prefHeight="395.0" prefWidth="675.0" title="Number of participants per event ">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Button fx:id="returntxt" layoutX="544.0" layoutY="425.0" mnemonicParsing="false" onAction="#returnstat" prefHeight="25.0" prefWidth="74.0" text="Return" />
+   </children>
+</AnchorPane>

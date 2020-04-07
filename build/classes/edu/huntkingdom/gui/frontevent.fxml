@@ -28,7 +28,7 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Label layoutX="375.0" prefHeight="50.0" prefWidth="121.0" text="Events" textFill="#4b5e4a">
+                              <Label layoutX="258.0" prefHeight="50.0" prefWidth="282.0" text="les événements" textFill="#4b5e4a">
                                  <font>
                                     <Font name="Britannic Bold" size="39.0" />
                                  </font>
@@ -58,7 +58,7 @@
                                     </Label>
                                     <Label fx:id="texteventspanefx" layoutX="7.0" layoutY="147.0" prefHeight="65.0" prefWidth="242.0" />
                                     <Label fx:id="DateeventsInteface" layoutX="77.0" layoutY="124.0" underline="true" />
-                                    <Button fx:id="participatefx" layoutX="20.0" layoutY="228.0" mnemonicParsing="false" onAction="#participate" text="participate" />
+                                    <Button fx:id="participatefx" layoutX="20.0" layoutY="228.0" mnemonicParsing="false" onAction="#participate" text="participer" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane fx:id="Paneeventsfx1" layoutX="315.0" layoutY="100.0" prefHeight="270.0" prefWidth="256.0" style="-fx-background-color: white;" visible="false">
@@ -86,7 +86,7 @@
                                     </Label>
                                     <Label fx:id="texteventspanefx1" layoutX="7.0" layoutY="147.0" prefHeight="65.0" prefWidth="242.0" />
                                     <Label fx:id="DateeventsInteface1" layoutX="77.0" layoutY="124.0" underline="true" />
-                                    <Button fx:id="participatefx1" layoutX="27.0" layoutY="230.0" mnemonicParsing="false" onAction="#participate1" text="participate" />
+                                    <Button fx:id="participatefx1" layoutX="27.0" layoutY="230.0" mnemonicParsing="false" onAction="#participate1" text="participer" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane fx:id="Paneeventsfx11" layoutX="626.0" layoutY="99.0" prefHeight="269.0" prefWidth="256.0" style="-fx-background-color: white;" visible="false">
@@ -114,10 +114,10 @@
                                     </Label>
                                     <Label fx:id="texteventspanefx11" layoutX="7.0" layoutY="147.0" prefHeight="65.0" prefWidth="242.0" />
                                     <Label fx:id="DateeventsInteface11" layoutX="77.0" layoutY="124.0" underline="true" />
-                                    <Button fx:id="participatefx2" layoutX="33.0" layoutY="230.0" mnemonicParsing="false" onAction="#participate2" text="participate" />
+                                    <Button fx:id="participatefx2" layoutX="33.0" layoutY="230.0" mnemonicParsing="false" onAction="#participate2" text="participer" />
                                  </children>
                               </AnchorPane>
-                              <JFXButton layoutX="105.0" layoutY="38.0" onAction="#viewmore" text="View More" />
+                              <JFXButton layoutX="105.0" layoutY="38.0" onAction="#viewmore" text="voir plus" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -183,7 +183,7 @@
                                  <children>
                                     <TextField fx:id="txtname" />
                                     <TextField fx:id="txtaddress" />
-                                    <ComboBox fx:id="combotype" prefHeight="25.0" prefWidth="187.0" promptText="choose" />
+                                    <ComboBox fx:id="combotype" prefHeight="25.0" prefWidth="187.0" />
                                     <TextField fx:id="txtprice" />
                                     <TextField fx:id="txtnumber" />
                                     <TextField fx:id="txtdescription" />
@@ -200,6 +200,7 @@
                               </VBox>
                            </children>
                         </HBox>
+                        <ComboBox fx:id="comboadresse" layoutX="389.0" layoutY="44.0" prefWidth="150.0" />
                      </children></AnchorPane>
               </content>
             </Tab>

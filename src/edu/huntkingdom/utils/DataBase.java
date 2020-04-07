@@ -20,7 +20,7 @@ public class DataBase {
     public  static DataBase db;
     public Connection con;
     
-       private DataBase() {
+       public DataBase() {
          try {
              con=DriverManager.getConnection(url, login, pwd);
              System.out.println("connexion etablie");

@@ -12,7 +12,7 @@
     <jar href="lib\itext-5.0.6.jar" size="1613319" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
-    <jar href="testpi.jar" size="4388797" download="eager" />
+    <jar href="testpi.jar" size="4389044" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="testpi" >
     <param name="requiredFXVersion" value="8.0+"/>

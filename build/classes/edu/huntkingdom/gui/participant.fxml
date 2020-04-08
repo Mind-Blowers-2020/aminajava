@@ -17,7 +17,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="participantTV" layoutX="-19.0" prefHeight="271.0" prefWidth="986.0">
+                        <TableView fx:id="participantTV" layoutX="-19.0" layoutY="54.0" prefHeight="271.0" prefWidth="986.0">
                            <columns>
                               <TableColumn fx:id="evenement" prefWidth="75.0" text="evenement" />
                               <TableColumn fx:id="date_inscrit" prefWidth="75.0" text="date_inscrit" />
@@ -28,15 +28,15 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <JFXButton layoutX="92.0" layoutY="339.0" onAction="#supprimer" text="supprimer" />
-                        <JFXButton layoutX="235.0" layoutY="338.0" onAction="#modifier" text="modifier" />
-                        <Button layoutX="399.0" layoutY="338.0" mnemonicParsing="false" onAction="#stat" text="stat" />
+                        <JFXButton layoutX="35.0" layoutY="358.0" onAction="#supprimer" text="supprimer" />
+                        <JFXButton layoutX="155.0" layoutY="358.0" onAction="#modifier" text="modifier" />
+                        <Button layoutX="88.0" layoutY="412.0" mnemonicParsing="false" onAction="#stat" prefHeight="39.0" prefWidth="109.0" text="stat" />
+                        <TextField fx:id="searchTF" layoutX="252.0" layoutY="6.0" onAction="#filter" promptText="search" text="recherche" />
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
          </tabs>
       </JFXTabPane>
-      <TextField fx:id="searchTF" layoutX="724.0" layoutY="506.0" onAction="#filter" promptText="search" />
    </children>
 </AnchorPane>

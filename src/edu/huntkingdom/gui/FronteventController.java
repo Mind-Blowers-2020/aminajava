@@ -341,7 +341,7 @@ try {
     private void ajouter(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
         //Scene scene = new Scene(root, 1100, 650);
-        Scene scene = new Scene(root);//fhemtha faza edhyka imchi hajet tefha le:p hhh
+        Scene scene = new Scene(root);
         Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         appStage.setScene(scene);
         appStage.show();
@@ -371,7 +371,7 @@ txtprice.clear();
 }
     @FXML
     private void addevent(ActionEvent event) {
-        if(verifNomEvent()&&verifDate())
+        if(verifNomEvent()&&verifDate()&&verifNumber()&&verifprix())
         {
         String l="";
         if (combotype.getSelectionModel().isEmpty()) {
@@ -454,5 +454,39 @@ String s= comboadresse.getValue();
             return false;
         }
       }
+        private boolean verifNumber() {
+        Pattern p = Pattern.compile("[0-9]+");
+        Matcher m = p.matcher(txtnumber.getText());
+       
+        if (m.find() && m.group().equals(txtnumber.getText())) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation de nombre de places");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifier le nombre de places saisis");
+            alert.showAndWait();
+            return false;
+        }
+    }
+        
+           private boolean verifprix() {
+        Pattern p = Pattern.compile("[0-9]+");
+        Matcher m = p.matcher(txtprice.getText());
+       
+        if (m.find() && m.group().equals(txtprice.getText())) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation de prix");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifier le prix saisis");
+            alert.showAndWait();
+            return false;
+        }
+    }
+        
+        
+        
 
 }

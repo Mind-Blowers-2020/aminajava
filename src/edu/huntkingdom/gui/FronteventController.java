@@ -5,6 +5,7 @@
  */
 package edu.huntkingdom.gui;
 
+import com.itextpdf.text.pdf.qrcode.QRCode;
 import edu.huntkingdom.entities.Email;
 import edu.huntkingdom.entities.Evenement;
 import edu.huntkingdom.entities.EventCours;
@@ -56,6 +57,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.xml.ws.Holder;
+
 
 /**
  * FXML Controller class
@@ -213,6 +215,8 @@ public class FronteventController implements Initializable {
                 int id = se.findbyImage(images.substring(27));
                 holdID.value = Integer.toString(id);
                 System.out.println("id:" + id);
+               
+                se.findbyid(id);
 
                 System.out.println("imagename:" + images.substring(27));
                 try {
@@ -221,6 +225,7 @@ public class FronteventController implements Initializable {
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root1));
                     stage.show();
+                  
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -270,7 +275,7 @@ public class FronteventController implements Initializable {
     }
 
     @FXML
-    private void participate(ActionEvent event) {
+    private void participate(ActionEvent event) throws SQLException {
         String images = imageeventspanefx.getImage().impl_getUrl();
         int id = se.findbyImage(images.substring(27));
         holdID.value = Integer.toString(id);
@@ -287,6 +292,10 @@ public class FronteventController implements Initializable {
 //         message.put("UpdatedAt","");
 //        message.put("Description", "hh");
 String nomevent= se.getnom(Integer.parseInt(eventid));
+       QrCodeController q=new QrCodeController();
+       Evenement e=new Evenement();
+       e=se.findbyid(id);
+       q.ini(e);
         message.put("Content","bonjour  "+ user.getUsername() + "    votre inscrit au evenement    "+nomevent+"   a été bien ajoutée");
         try {
             email.sendEmail(user.getEmail(), "huntkingkdom administartion", message);
@@ -309,7 +318,7 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
     }
 
     @FXML
-    private void participate1(ActionEvent event) {
+    private void participate1(ActionEvent event) throws SQLException {
         String images = imageeventspanefx1.getImage().impl_getUrl();
         int id = se.findbyImage(images.substring(27));
         holdID.value = Integer.toString(id);
@@ -324,6 +333,10 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
         Email email = new Email();
         HashMap<String, String> message = new HashMap<String, String>();
         message.put("Title", "huntkingkdom administartion " );
+          QrCodeController q=new QrCodeController();
+       Evenement e=new Evenement();
+       e=se.findbyid(id);
+       q.ini(e);
 //         message.put("UpdatedAt","");
 //        message.put("Description", "hh");
 String nomevent= se.getnom(Integer.parseInt(eventid));
@@ -345,7 +358,7 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
     }
 
     @FXML
-    private void participate2(ActionEvent event) {
+    private void participate2(ActionEvent event) throws SQLException {
         String images = imageeventspanefx11.getImage().impl_getUrl();
         int id = se.findbyImage(images.substring(27));
         holdID.value = Integer.toString(id);
@@ -359,6 +372,10 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
         Email email = new Email();
         HashMap<String, String> message = new HashMap<String, String>();
         message.put("Title", "huntkingkdom administartion " );
+          QrCodeController q=new QrCodeController();
+       Evenement e=new Evenement();
+       e=se.findbyid(id);
+       q.ini(e);
 //         message.put("UpdatedAt","");
 //        message.put("Description", "hh");
 String nomevent= se.getnom(Integer.parseInt(eventid));

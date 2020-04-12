@@ -75,8 +75,10 @@ ServiceEvent se=new ServiceEvent();
             nomEvent.setText(e.getNomEvent());
             txtprix1.setText(String.valueOf(e.getPrix()));
             description.setText(e.getDescription());
+           
           ///  adresse.setText(e.getAdresse());
           WebEngine webEngine = webview.getEngine();
+       
 
         URL url1 = this.getClass().getResource("/edu/huntkingdom/gui/webmaps.html");
         webEngine.load(url1.toString());

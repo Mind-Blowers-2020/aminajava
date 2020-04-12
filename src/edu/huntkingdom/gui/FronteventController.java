@@ -58,7 +58,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.xml.ws.Holder;
 
-
 /**
  * FXML Controller class
  *
@@ -215,7 +214,7 @@ public class FronteventController implements Initializable {
                 int id = se.findbyImage(images.substring(27));
                 holdID.value = Integer.toString(id);
                 System.out.println("id:" + id);
-               
+
                 se.findbyid(id);
 
                 System.out.println("imagename:" + images.substring(27));
@@ -225,7 +224,7 @@ public class FronteventController implements Initializable {
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root1));
                     stage.show();
-                  
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -288,28 +287,26 @@ public class FronteventController implements Initializable {
         Participant p = new Participant(0, Boolean.FALSE, Integer.parseInt(eventid), ts, user.getUsername(), user.getEmail());
         Email email = new Email();
         HashMap<String, String> message = new HashMap<String, String>();
-        message.put("Title", "huntkingkdom administartion " );
+        message.put("Title", "huntkingkdom administartion ");
 //         message.put("UpdatedAt","");
 //        message.put("Description", "hh");
-String nomevent= se.getnom(Integer.parseInt(eventid));
-       QrCodeController q=new QrCodeController();
-       Evenement e=new Evenement();
-       e=se.findbyid(id);
-       q.ini(e);
-        message.put("Content","bonjour  "+ user.getUsername() + "    votre inscrit au evenement    "+nomevent+"   a été bien ajoutée");
+        String nomevent = se.getnom(Integer.parseInt(eventid));
+        QrCodeController q = new QrCodeController();
+        Evenement e = new Evenement();
+        e = se.findbyid(id);
+        q.ini(e);
+        message.put("Content", "bonjour  " + user.getUsername() + "    votre inscrit au evenement    " + nomevent + "   a été bien ajoutée");
         try {
             email.sendEmail(user.getEmail(), "huntkingkdom administartion", message);
 
         } catch (Exception ex) {
             ex.getMessage();
         }
-                
-            
-        
+
         se.decrementqte(Integer.parseInt(eventid));
         sp.ajouter(p);
-        
-         Alert succAddBookAlert = new Alert(Alert.AlertType.INFORMATION);
+
+        Alert succAddBookAlert = new Alert(Alert.AlertType.INFORMATION);
         succAddBookAlert.setTitle("Add Event");
         succAddBookAlert.setHeaderText("Results:");
         succAddBookAlert.setContentText("Event added successfully!");
@@ -323,7 +320,7 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
         int id = se.findbyImage(images.substring(27));
         holdID.value = Integer.toString(id);
         System.out.println("id:" + id);
-         String eventid = holdID.value;
+        String eventid = holdID.value;
 
         System.out.println("id:" + id);
         Date date = new Date();
@@ -332,15 +329,15 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
         Participant p = new Participant(0, Boolean.FALSE, Integer.parseInt(eventid), ts, user.getUsername(), user.getEmail());
         Email email = new Email();
         HashMap<String, String> message = new HashMap<String, String>();
-        message.put("Title", "huntkingkdom administartion " );
-          QrCodeController q=new QrCodeController();
-       Evenement e=new Evenement();
-       e=se.findbyid(id);
-       q.ini(e);
+        message.put("Title", "huntkingkdom administartion ");
+        QrCodeController q = new QrCodeController();
+        Evenement e = new Evenement();
+        e = se.findbyid(id);
+        q.ini(e);
 //         message.put("UpdatedAt","");
 //        message.put("Description", "hh");
-String nomevent= se.getnom(Integer.parseInt(eventid));
-        message.put("Content","bonjour  "+ user.getUsername() + "    votre inscrit au evenement    "+nomevent+"   a été bien ajoutée");
+        String nomevent = se.getnom(Integer.parseInt(eventid));
+        message.put("Content", "bonjour  " + user.getUsername() + "    votre inscrit au evenement    " + nomevent + "   a été bien ajoutée");
         try {
             email.sendEmail(user.getEmail(), "huntkingkdom administartion", message);
 
@@ -349,8 +346,8 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
         }
         se.decrementqte(Integer.parseInt(eventid));
         sp.ajouter(p);
-        
-              Alert succAddBookAlert = new Alert(Alert.AlertType.INFORMATION);
+
+        Alert succAddBookAlert = new Alert(Alert.AlertType.INFORMATION);
         succAddBookAlert.setTitle("Add Event");
         succAddBookAlert.setHeaderText("Results:");
         succAddBookAlert.setContentText("Event added successfully!");
@@ -362,7 +359,7 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
         String images = imageeventspanefx11.getImage().impl_getUrl();
         int id = se.findbyImage(images.substring(27));
         holdID.value = Integer.toString(id);
-          String eventid = holdID.value;
+        String eventid = holdID.value;
 
         System.out.println("id:" + id);
         Date date = new Date();
@@ -371,15 +368,15 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
         Participant p = new Participant(0, Boolean.FALSE, Integer.parseInt(eventid), ts, user.getUsername(), user.getEmail());
         Email email = new Email();
         HashMap<String, String> message = new HashMap<String, String>();
-        message.put("Title", "huntkingkdom administartion " );
-          QrCodeController q=new QrCodeController();
-       Evenement e=new Evenement();
-       e=se.findbyid(id);
-       q.ini(e);
+        message.put("Title", "huntkingkdom administartion ");
+        QrCodeController q = new QrCodeController();
+        Evenement e = new Evenement();
+        e = se.findbyid(id);
+        q.ini(e);
 //         message.put("UpdatedAt","");
 //        message.put("Description", "hh");
-String nomevent= se.getnom(Integer.parseInt(eventid));
-        message.put("Content","bonjour  "+ user.getUsername() + "    votre inscrit au evenement    "+nomevent+"   a été bien ajoutée");
+        String nomevent = se.getnom(Integer.parseInt(eventid));
+        message.put("Content", "bonjour  " + user.getUsername() + "    votre inscrit au evenement    " + nomevent + "   a été bien ajoutée");
         try {
             email.sendEmail(user.getEmail(), "huntkingkdom administartion", message);
 
@@ -388,7 +385,6 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
         }
         se.decrementqte(Integer.parseInt(eventid));
         sp.ajouter(p);
-        
         Alert succAddBookAlert = new Alert(Alert.AlertType.INFORMATION);
         succAddBookAlert.setTitle("Add Event");
         succAddBookAlert.setHeaderText("Results:");
@@ -457,13 +453,13 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
 
     @FXML
     private void addevent(ActionEvent event) {
-        if (verifNomEvent() && verifDate() && verifNumber() && verifprix()) {
+        if (verifNomEvent() && verifDate() && verifNumber() && verifprix()&& verifDatedebut()) {
             String l = "";
             if (combotype.getSelectionModel().isEmpty()) {
                 Alert selectEventAlert = new Alert(Alert.AlertType.WARNING);
-                selectEventAlert.setTitle("Select an event");
+                selectEventAlert.setTitle("séléctionnez un événement");
                 selectEventAlert.setHeaderText(null);
-                selectEventAlert.setContentText("You need to select a type !");
+                selectEventAlert.setContentText("tu dois choisir un type !");
                 selectEventAlert.showAndWait();
                 return;
             }
@@ -498,9 +494,9 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
             refrech();
 
             Alert succAddBookAlert = new Alert(Alert.AlertType.INFORMATION);
-            succAddBookAlert.setTitle("Add Event");
-            succAddBookAlert.setHeaderText("Results:");
-            succAddBookAlert.setContentText("Event added successfully!");
+            succAddBookAlert.setTitle("Ajout événement");
+            succAddBookAlert.setHeaderText("Resultat:");
+            succAddBookAlert.setContentText("événement ajouté!");
             succAddBookAlert.showAndWait();
 
         }
@@ -532,6 +528,22 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
             alert.setTitle("Validation des champs");
             alert.setHeaderText(null);
             alert.setContentText("date début inférieur à date fin");
+            alert.showAndWait();
+            return false;
+        }
+    }
+private boolean verifDatedebut() {
+        Timestamp dated = Timestamp.valueOf(combodateD.getValue().atTime(LocalTime.MIDNIGHT));
+ Date date = new Date();
+        Timestamp ts = new Timestamp(date.getTime());
+        
+        if (ts.before(dated)) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation des champs");
+            alert.setHeaderText(null);
+            alert.setContentText("date début inférieur à date système");
             alert.showAndWait();
             return false;
         }
@@ -571,17 +583,17 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
 
     @FXML
     private void calendar(ActionEvent event) {
-         try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FullCalendar.fxml"));
-                    Parent root1 = (Parent) fxmlLoader.load();
-                    calendarController controller = fxmlLoader.getController();
-        controller.calendarPane.getChildren().add(new edu.huntkingdom.gui.FullCalendarView(YearMonth.now()).getView());
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root1));
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FullCalendar.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            calendarController controller = fxmlLoader.getController();
+            controller.calendarPane.getChildren().add(new edu.huntkingdom.gui.FullCalendarView(YearMonth.now()).getView());
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

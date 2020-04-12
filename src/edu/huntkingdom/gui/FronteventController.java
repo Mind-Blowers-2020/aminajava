@@ -24,6 +24,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalTime;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -107,8 +108,6 @@ public class FronteventController implements Initializable {
     int i = 0;
     @FXML
     private TextField txtname;
-    @FXML
-    private TextField txtaddress;
     @FXML
     private ComboBox<String> combotype;
     public ObservableList<String> types = FXCollections.observableArrayList("peche", "chasse");
@@ -551,6 +550,21 @@ String nomevent= se.getnom(Integer.parseInt(eventid));
             alert.showAndWait();
             return false;
         }
+    }
+
+    @FXML
+    private void calendar(ActionEvent event) {
+         try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FullCalendar.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    calendarController controller = fxmlLoader.getController();
+        controller.calendarPane.getChildren().add(new edu.huntkingdom.gui.FullCalendarView(YearMonth.now()).getView());
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
     }
 
 }

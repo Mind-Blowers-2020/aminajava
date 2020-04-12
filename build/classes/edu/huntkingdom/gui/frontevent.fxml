@@ -118,6 +118,7 @@
                                  </children>
                               </AnchorPane>
                               <JFXButton layoutX="105.0" layoutY="38.0" onAction="#viewmore" text="voir plus" />
+                              <JFXButton layoutX="711.0" layoutY="49.0" onAction="#calendar" text="calendrier des éve,ements" />
                            </children>
                         </AnchorPane>
                      </children>

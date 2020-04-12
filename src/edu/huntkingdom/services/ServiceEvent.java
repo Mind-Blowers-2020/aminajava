@@ -162,6 +162,25 @@ public Evenement findbyid(int id) {
 
         return u;
     }
+public String getnom(int id) {
+        String q = "";
+
+        String requete4 = "select nomEvent from evenement where id=?;";
+        PreparedStatement pst;
+        try {
+            pst = con.prepareStatement(requete4);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                q = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+        }
+        return q;
+    }
+
+
+
 public int getquantite(int id) {
         int q = 0;
 

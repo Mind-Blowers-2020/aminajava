@@ -126,7 +126,7 @@ public class ParticipantController implements Initializable {
                 || art.getPrenom().toLowerCase().contains(searchTF.getText().toLowerCase())
                 // ctt ? bara jareb 
                 || Integer.toString(art.getEvenment()).equals(searchTF.getText())
-              //lahdha rit time stamp bech t3adhébk kifi f hedhy atten mcdh lezm recherh b dat eXD
+             
 //                || Integer.toString(art.getPrixAchat()).equals(searchTF.getText())
 //                || Integer.toString(art.getPrixVente()).equals(searchTF.getText())
                 

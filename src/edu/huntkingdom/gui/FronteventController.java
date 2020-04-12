@@ -5,20 +5,28 @@
  */
 package edu.huntkingdom.gui;
 
+import edu.huntkingdom.entities.Email;
 import edu.huntkingdom.entities.Evenement;
 import edu.huntkingdom.entities.EventCours;
+import edu.huntkingdom.entities.Participant;
+import edu.huntkingdom.entities.User;
 import edu.huntkingdom.services.ServiceEvent;
 import edu.huntkingdom.services.ServiceEventCours;
+import edu.huntkingdom.services.ServiceParticipant;
 import edu.huntkingdom.services.UploadServices;
+import edu.huntkingdom.services.UserServices;
 import edu.huntkingdom.utils.DataBase;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Math.E;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -104,9 +112,9 @@ public class FronteventController implements Initializable {
     @FXML
     private ComboBox<String> combotype;
     public ObservableList<String> types = FXCollections.observableArrayList("peche", "chasse");
-@FXML
+    @FXML
     private ComboBox<String> comboadresse;
-public ObservableList<String> adresse = FXCollections.observableArrayList("tunis", "ariana","sousse","ben arbous","monasitir","sfax");
+    public ObservableList<String> adresse = FXCollections.observableArrayList("tunis", "ariana", "sousse", "ben arbous", "monasitir", "sfax");
     @FXML
     private TextField txtprice;
     @FXML
@@ -121,7 +129,11 @@ public ObservableList<String> adresse = FXCollections.observableArrayList("tunis
     private DatePicker combodateF;
     ServiceEventCours ser = new ServiceEventCours();
     UploadServices uploadservices = new UploadServices();
-    
+
+    int iduserconnect = 1; // normalment bel session
+    UserServices us = new UserServices();
+    User user = us.findUserbyID(iduserconnect);
+    ServiceParticipant sp = new ServiceParticipant();
 
     public int getTxtnumber() {
         return Integer.parseInt(txtnumber.getText());
@@ -220,19 +232,19 @@ public ObservableList<String> adresse = FXCollections.observableArrayList("tunis
             //            System.out.println("id:"+data.get(CurrentEvent+1).getId());
 //            String numberAsString = Integer.toString(data.get(CurrentEvent+1).getId());
 //            holdID.value = numberAsString;
-String images = imageeventspanefx1.getImage().impl_getUrl();
-int id = se.findbyImage(images.substring(27));
-holdID.value = Integer.toString(id);
-System.out.println("id:" + id);
-try {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("eventdetails.fxml"));
-    Parent root1 = (Parent) fxmlLoader.load();
-    Stage stage = new Stage();
-    stage.setScene(new Scene(root1));
-    stage.show();
-} catch (IOException e) {
-    e.printStackTrace();
-}
+            String images = imageeventspanefx1.getImage().impl_getUrl();
+            int id = se.findbyImage(images.substring(27));
+            holdID.value = Integer.toString(id);
+            System.out.println("id:" + id);
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("eventdetails.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root1));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
         imageeventspanefx11.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -260,57 +272,113 @@ try {
 
     @FXML
     private void participate(ActionEvent event) {
-           String images = imageeventspanefx.getImage().impl_getUrl();
-                int id = se.findbyImage(images.substring(27));
-                holdID.value = Integer.toString(id);
-                System.out.println("id:" + id);
-                   try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("participate.fxml"));
-                    Parent root1 = (Parent) fxmlLoader.load();
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root1));
-                    stage.show();
-                } catch (IOException e) {
-                    // e.printStackTrace();
-                }
-    }
+        String images = imageeventspanefx.getImage().impl_getUrl();
+        int id = se.findbyImage(images.substring(27));
+        holdID.value = Integer.toString(id);
+        String eventid = holdID.value;
 
+        System.out.println("id:" + id);
+        Date date = new Date();
+        Timestamp ts = new Timestamp(date.getTime());
+
+        Participant p = new Participant(0, Boolean.FALSE, Integer.parseInt(eventid), ts, user.getUsername(), user.getEmail());
+        Email email = new Email();
+        HashMap<String, String> message = new HashMap<String, String>();
+        message.put("Title", "huntkingkdom administartion " );
+//         message.put("UpdatedAt","");
+//        message.put("Description", "hh");
+String nomevent= se.getnom(Integer.parseInt(eventid));
+        message.put("Content","bonjour  "+ user.getUsername() + "    votre inscrit au evenement    "+nomevent+"   a été bien ajoutée");
+        try {
+            email.sendEmail(user.getEmail(), "huntkingkdom administartion", message);
+
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+                
+            
+        
+        se.decrementqte(Integer.parseInt(eventid));
+        sp.ajouter(p);
+        
+         Alert succAddBookAlert = new Alert(Alert.AlertType.INFORMATION);
+        succAddBookAlert.setTitle("Add Event");
+        succAddBookAlert.setHeaderText("Results:");
+        succAddBookAlert.setContentText("Event added successfully!");
+        succAddBookAlert.showAndWait();
+        refrech();
+    }
 
     @FXML
     private void participate1(ActionEvent event) {
-           String images = imageeventspanefx1.getImage().impl_getUrl();
-                int id = se.findbyImage(images.substring(27));
-                holdID.value = Integer.toString(id);
-                System.out.println("id:" + id);
-                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("participate.fxml"));
-                    Parent root1 = (Parent) fxmlLoader.load();
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root1));
-                    stage.show();
-                } catch (IOException e) {
-                    // e.printStackTrace();
-                }
-    }
+        String images = imageeventspanefx1.getImage().impl_getUrl();
+        int id = se.findbyImage(images.substring(27));
+        holdID.value = Integer.toString(id);
+        System.out.println("id:" + id);
+         String eventid = holdID.value;
 
+        System.out.println("id:" + id);
+        Date date = new Date();
+        Timestamp ts = new Timestamp(date.getTime());
+
+        Participant p = new Participant(0, Boolean.FALSE, Integer.parseInt(eventid), ts, user.getUsername(), user.getEmail());
+        Email email = new Email();
+        HashMap<String, String> message = new HashMap<String, String>();
+        message.put("Title", "huntkingkdom administartion " );
+//         message.put("UpdatedAt","");
+//        message.put("Description", "hh");
+String nomevent= se.getnom(Integer.parseInt(eventid));
+        message.put("Content","bonjour  "+ user.getUsername() + "    votre inscrit au evenement    "+nomevent+"   a été bien ajoutée");
+        try {
+            email.sendEmail(user.getEmail(), "huntkingkdom administartion", message);
+
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        se.decrementqte(Integer.parseInt(eventid));
+        sp.ajouter(p);
+        
+              Alert succAddBookAlert = new Alert(Alert.AlertType.INFORMATION);
+        succAddBookAlert.setTitle("Add Event");
+        succAddBookAlert.setHeaderText("Results:");
+        succAddBookAlert.setContentText("Event added successfully!");
+        succAddBookAlert.showAndWait();
+    }
 
     @FXML
     private void participate2(ActionEvent event) {
-           String images = imageeventspanefx11.getImage().impl_getUrl();
-                int id = se.findbyImage(images.substring(27));
-                holdID.value = Integer.toString(id);
-                System.out.println("id:" + id);
-                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("participate.fxml"));
-                    Parent root1 = (Parent) fxmlLoader.load();
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root1));
-                    stage.show();
-                } catch (IOException e) {
-                    // e.printStackTrace();
-                }
-    }
+        String images = imageeventspanefx11.getImage().impl_getUrl();
+        int id = se.findbyImage(images.substring(27));
+        holdID.value = Integer.toString(id);
+          String eventid = holdID.value;
 
+        System.out.println("id:" + id);
+        Date date = new Date();
+        Timestamp ts = new Timestamp(date.getTime());
+
+        Participant p = new Participant(0, Boolean.FALSE, Integer.parseInt(eventid), ts, user.getUsername(), user.getEmail());
+        Email email = new Email();
+        HashMap<String, String> message = new HashMap<String, String>();
+        message.put("Title", "huntkingkdom administartion " );
+//         message.put("UpdatedAt","");
+//        message.put("Description", "hh");
+String nomevent= se.getnom(Integer.parseInt(eventid));
+        message.put("Content","bonjour  "+ user.getUsername() + "    votre inscrit au evenement    "+nomevent+"   a été bien ajoutée");
+        try {
+            email.sendEmail(user.getEmail(), "huntkingkdom administartion", message);
+
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        se.decrementqte(Integer.parseInt(eventid));
+        sp.ajouter(p);
+        
+        Alert succAddBookAlert = new Alert(Alert.AlertType.INFORMATION);
+        succAddBookAlert.setTitle("Add Event");
+        succAddBookAlert.setHeaderText("Results:");
+        succAddBookAlert.setContentText("Event added successfully!");
+        succAddBookAlert.showAndWait();
+    }
 
     @FXML
     private void viewmore(ActionEvent event) {
@@ -360,71 +428,69 @@ try {
             txtimage.setText(imageFile);
         }
     }
-void refrech()
-{txtimage.clear();
-//txtaddress.clear();
-txtdescription.clear();
-txtname.clear();
-txtnumber.clear();
-txtprice.clear();
 
-}
+    void refrech() {
+        txtimage.clear();
+//txtaddress.clear();
+        txtdescription.clear();
+        txtname.clear();
+        txtnumber.clear();
+        txtprice.clear();
+
+    }
+
     @FXML
     private void addevent(ActionEvent event) {
-        if(verifNomEvent()&&verifDate()&&verifNumber()&&verifprix())
-        {
-        String l="";
-        if (combotype.getSelectionModel().isEmpty()) {
-            Alert selectEventAlert = new Alert(Alert.AlertType.WARNING);
-            selectEventAlert.setTitle("Select an event");
-            selectEventAlert.setHeaderText(null);
-            selectEventAlert.setContentText("You need to select a type !");
-            selectEventAlert.showAndWait();
-            return;
-        }
-        String FilenameInserver = uploadservices.upload(txtimage.getText());
+        if (verifNomEvent() && verifDate() && verifNumber() && verifprix()) {
+            String l = "";
+            if (combotype.getSelectionModel().isEmpty()) {
+                Alert selectEventAlert = new Alert(Alert.AlertType.WARNING);
+                selectEventAlert.setTitle("Select an event");
+                selectEventAlert.setHeaderText(null);
+                selectEventAlert.setContentText("You need to select a type !");
+                selectEventAlert.showAndWait();
+                return;
+            }
+            String FilenameInserver = uploadservices.upload(txtimage.getText());
 
-        Timestamp dated = Timestamp.valueOf(combodateD.getValue().atTime(LocalTime.MIDNIGHT));
+            Timestamp dated = Timestamp.valueOf(combodateD.getValue().atTime(LocalTime.MIDNIGHT));
 
-        Timestamp datef = Timestamp.valueOf(combodateF.getValue().atTime(LocalTime.MIDNIGHT));
-String s= comboadresse.getValue();
-        System.out.println(s);
-        if (s.equals("ariana"))
-        {l=36.85724000000005+";"+10.189320000000066;
-        }
-        if (s.equals("tunis"))
-        {
-            l=33.8439408+";"+11.8801133;
-        }
-             if (s.equals("sousse"))
-        {
-            l=35.829030000000046+";"+10.63778000000002;
-        }
-               if (s.equals("ben arous"))
-        {
-        }
-           if (s.equals("sfax"))
-        {
-            l=36.85724000000005+";"+10.189320000000066;
-        }
-           
-          if (s.equals("monastir"))
-        {
-            l=36.85724000000005+";"+10.189320000000066;
-        }
-        EventCours e = new EventCours(txtname.getText(), comboadresse.getValue(), (String) combotype.getValue(), getTxtprice(), getTxtnumber(), txtdescription.getText(), dated, FilenameInserver, datef,l);
-       
-        ser.ajouter(e);
-        refrech();
+            Timestamp datef = Timestamp.valueOf(combodateF.getValue().atTime(LocalTime.MIDNIGHT));
+            String s = comboadresse.getValue();
+            System.out.println(s);
+            if (s.equals("ariana")) {
+                l = 36.85724000000005 + ";" + 10.189320000000066;
+            }
+            if (s.equals("tunis")) {
+                l = 33.8439408 + ";" + 11.8801133;
+            }
+            if (s.equals("sousse")) {
+                l = 35.829030000000046 + ";" + 10.63778000000002;
+            }
+            if (s.equals("ben arous")) {
+            }
+            if (s.equals("sfax")) {
+                l = 36.85724000000005 + ";" + 10.189320000000066;
+            }
 
-        Alert succAddBookAlert = new Alert(Alert.AlertType.INFORMATION);
-        succAddBookAlert.setTitle("Add Event");
-        succAddBookAlert.setHeaderText("Results:");
-        succAddBookAlert.setContentText("Event added successfully!");
-        succAddBookAlert.showAndWait();
+            if (s.equals("monastir")) {
+                l = 36.85724000000005 + ";" + 10.189320000000066;
+            }
+            EventCours e = new EventCours(txtname.getText(), comboadresse.getValue(), (String) combotype.getValue(), getTxtprice(), getTxtnumber(), txtdescription.getText(), dated, FilenameInserver, datef, l);
 
-    }}
-      private boolean verifNomEvent() {
+            ser.ajouter(e);
+            refrech();
+
+            Alert succAddBookAlert = new Alert(Alert.AlertType.INFORMATION);
+            succAddBookAlert.setTitle("Add Event");
+            succAddBookAlert.setHeaderText("Results:");
+            succAddBookAlert.setContentText("Event added successfully!");
+            succAddBookAlert.showAndWait();
+
+        }
+    }
+
+    private boolean verifNomEvent() {
         Pattern p = Pattern.compile("[a-zA-Z]+");
         Matcher m = p.matcher(txtname.getText());
         if (m.find() && m.group().equals(txtname.getText())) {
@@ -437,10 +503,10 @@ String s= comboadresse.getValue();
             alert.showAndWait();
             return false;
         }
-      }
-      
-        private boolean verifDate() {
-       Timestamp dated = Timestamp.valueOf(combodateD.getValue().atTime(LocalTime.MIDNIGHT));
+    }
+
+    private boolean verifDate() {
+        Timestamp dated = Timestamp.valueOf(combodateD.getValue().atTime(LocalTime.MIDNIGHT));
 
         Timestamp datef = Timestamp.valueOf(combodateF.getValue().atTime(LocalTime.MIDNIGHT));
         if (dated.before(datef)) {
@@ -453,11 +519,12 @@ String s= comboadresse.getValue();
             alert.showAndWait();
             return false;
         }
-      }
-        private boolean verifNumber() {
+    }
+
+    private boolean verifNumber() {
         Pattern p = Pattern.compile("[0-9]+");
         Matcher m = p.matcher(txtnumber.getText());
-       
+
         if (m.find() && m.group().equals(txtnumber.getText())) {
             return true;
         } else {
@@ -469,11 +536,11 @@ String s= comboadresse.getValue();
             return false;
         }
     }
-        
-           private boolean verifprix() {
+
+    private boolean verifprix() {
         Pattern p = Pattern.compile("[0-9]+");
         Matcher m = p.matcher(txtprice.getText());
-       
+
         if (m.find() && m.group().equals(txtprice.getText())) {
             return true;
         } else {
@@ -485,8 +552,5 @@ String s= comboadresse.getValue();
             return false;
         }
     }
-        
-        
-        
 
 }

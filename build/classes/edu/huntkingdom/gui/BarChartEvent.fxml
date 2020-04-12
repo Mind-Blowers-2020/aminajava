@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="464.0" prefWidth="711.0" stylesheets="@../utils/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.huntkingdom.gui.BarChartEventController">
    <children>
-      <BarChart fx:id="chart" layoutX="18.0" layoutY="12.0" prefHeight="397.0" prefWidth="675.0" title="nombre de participant dans chaque événement">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </BarChart>
       <Button fx:id="returntxt" layoutX="544.0" layoutY="425.0" mnemonicParsing="false" onAction="#returnstat" prefHeight="25.0" prefWidth="74.0" text="retour" />
+      <PieChart fx:id="piechart" layoutX="90.0" layoutY="14.0" prefHeight="400.0" prefWidth="531.0" />
    </children>
 </AnchorPane>

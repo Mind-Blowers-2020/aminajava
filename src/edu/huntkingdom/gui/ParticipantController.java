@@ -74,7 +74,6 @@ public class ParticipantController implements Initializable {
         this.participantTV.setItems(data);
     }    
 
-    @FXML
     private void supprimer(ActionEvent event) throws SQLException {
          if (participantTV.getSelectionModel().getSelectedItem() != null) {
             Alert deleteBookAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -113,9 +112,6 @@ public class ParticipantController implements Initializable {
         }
     }
 
-    @FXML
-    private void modifier(ActionEvent event) {
-    }
 
     @FXML
     private void filter(ActionEvent event) {

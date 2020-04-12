@@ -20,6 +20,13 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import edu.huntkingdom.services.ServiceEvent;
 import edu.huntkingdom.entities.Evenement;
+import edu.huntkingdom.utils.DataBase;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 
 /**
  * FXML Controller class
@@ -28,38 +35,47 @@ import edu.huntkingdom.entities.Evenement;
  */
 public class BarChartEventController implements Initializable {
 
-    @FXML
     private BarChart<?, ?> chart;
     @FXML
     private Button returntxt;
-
+    @FXML
+    private PieChart piechart;
+     ObservableList< PieChart.Data> piechartdata;
+  ArrayList< String> p = new ArrayList< String>();
+    ArrayList< Integer> c = new ArrayList< Integer>();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         try {
-            XYChart.Series set1=new XYChart.Series<>();
-            ServiceEvent serD = new ServiceEvent();
-            ServiceEvent serR = new ServiceEvent();
-            List<Evenement> x=serD.eventn();
-            
-            for (int i=0;i<x.size();i++)
-            {
-                String event = x.get(i).getNomEvent();
-                 int events = x.get(i).getNbPlaces();
-             
-                set1.getData().add(new XYChart.Data(event,events));
-                
+        
+       loadData();
+       
+        piechart.setData(piechartdata);
+
+    }  
+    public void loadData() {
+
+        String query = "select COUNT(*) as count ,nomEvent from evenement GROUP BY nomEvent "; //ORDER BY P asc
+
+        piechartdata = FXCollections.observableArrayList();
+
+        Connection con = DataBase.getInstance().getConnection();
+
+        try {
+
+            ResultSet rs = con.createStatement().executeQuery(query);
+            while (rs.next()) {
+
+                piechartdata.add(new PieChart.Data(rs.getString("nomEvent"), rs.getInt("count")));
+                p.add(rs.getString("nomEvent"));
+                c.add(rs.getInt("count"));
             }
-
-            
-            chart.getData().addAll(set1);
-        } catch (SQLException ex) {
-            Logger.getLogger(BarChartEventController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
+    }
 
-    }    
 
     @FXML
     private void returnstat(ActionEvent event) {

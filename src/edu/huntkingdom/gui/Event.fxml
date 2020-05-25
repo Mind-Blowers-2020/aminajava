@@ -28,7 +28,6 @@
                               <TableColumn fx:id="dateDebut" prefWidth="75.0" text="dateDebut" />
                               <TableColumn fx:id="image" prefWidth="75.0" text="image" />
                               <TableColumn fx:id="dateFin" prefWidth="75.0" text="dateFin" />
-                              <TableColumn fx:id="latlng" prefWidth="75.0" text="latlng" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -56,7 +55,6 @@
                               <TableColumn fx:id="dateDebutv" prefWidth="75.0" text="dateDebut" />
                               <TableColumn fx:id="imagev" prefWidth="75.0" text="image" />
                               <TableColumn fx:id="dateFinv" prefWidth="75.0" text="dateFin" />
-                              <TableColumn fx:id="latlngv" prefWidth="75.0" text="latlng" />
                            </columns>
                         </TableView>
                         <ImageView fx:id="imageview" fitHeight="112.0" fitWidth="121.0" layoutX="826.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />

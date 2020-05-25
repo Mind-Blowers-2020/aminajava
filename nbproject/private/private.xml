@@ -3,15 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/gui/EventController.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/services/ServiceParticipant.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/gui/QrCode.fxml</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/services/ServiceEvent.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/gui/LoginController.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/services/ServiceEventCours.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/gui/FronteventController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/services/UserServices.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/gui/ParticipateController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/entities/Email.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/gui/ParticipantController.java</file>
-            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/services/ServiceGuide.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/gui/eventdetailController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/entities/Evenement.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/gui/QrCodeController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/gui/participant.fxml</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/services/ServiceParticipant.java</file>
             <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/gui/BarChartEventController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/gui/FrontController.java</file>
+            <file>file:/C:/Users/asus/Documents/NetBeansProjects/aminaaa/testpi/src/edu/huntkingdom/gui/EventController.java</file>
         </group>
     </open-files>
 </project-private>

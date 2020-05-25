@@ -18,7 +18,7 @@
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
     <jar href="lib\zxing-core-1.7.jar" size="352719" download="eager" />
     <jar href="lib\zxing-j2se-1.7.jar" size="22051" download="eager" />
-    <jar href="testpi.jar" size="4406629" download="eager" />
+    <jar href="testpi.jar" size="4406594" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="testpi" >
     <param name="requiredFXVersion" value="8.0+"/>

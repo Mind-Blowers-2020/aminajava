@@ -29,7 +29,6 @@ public class Email {
         String pass ="yassinecss1928";
         String[] to = {address};
         String host = "smtp.gmail.com";
-
         Properties prop = System.getProperties();
         prop.put("mail.smtp.starttls.enable", "true");
         prop.put("mail.smtp.host", host);

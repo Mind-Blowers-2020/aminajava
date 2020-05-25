@@ -80,7 +80,7 @@ public class EventController implements Initializable {
     @FXML
     private TableColumn<EventCours, Date> dateFin;
     @FXML
-    private TableColumn<EventCours, String> latlng;
+   
     public ObservableList<EventCours> data = FXCollections.observableArrayList();
     ServiceEventCours sec = new ServiceEventCours();
 
@@ -106,7 +106,7 @@ public class EventController implements Initializable {
     @FXML
     private TableColumn<Evenement, Date> dateFinv;
     @FXML
-    private TableColumn<Evenement, String> latlngv;
+    
 
     public ObservableList<Evenement> dataa = FXCollections.observableArrayList();
     ServiceEvent se = new ServiceEvent();
@@ -135,7 +135,7 @@ public class EventController implements Initializable {
         this.dateDebut.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
         this.image.setCellValueFactory(new PropertyValueFactory<>("image"));
         this.dateFin.setCellValueFactory(new PropertyValueFactory<>("dateFin"));
-        this.latlng.setCellValueFactory(new PropertyValueFactory<>("latlng"));
+      
         this.eventcoursTV.setItems(data);
 
         //tab event
@@ -150,7 +150,7 @@ public class EventController implements Initializable {
         this.dateDebutv.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
         this.imagev.setCellValueFactory(new PropertyValueFactory<>("image"));
         this.dateFinv.setCellValueFactory(new PropertyValueFactory<>("dateFin"));
-        this.latlngv.setCellValueFactory(new PropertyValueFactory<>("latlng"));
+  
         this.eventTv.setItems(dataa);
            eventTv.setRowFactory(tv -> {
             TableRow<Evenement> row = new TableRow<>();

@@ -298,7 +298,6 @@ public class FronteventController implements Initializable {
         message.put("Content", "bonjour  " + user.getUsername() + "    votre inscrit au evenement    " + nomevent + "   a été bien ajoutée");
         try {
             email.sendEmail(user.getEmail(), "huntkingkdom administartion", message);
-
         } catch (Exception ex) {
             ex.getMessage();
         }
@@ -535,6 +534,7 @@ public class FronteventController implements Initializable {
 private boolean verifDatedebut() {
         Timestamp dated = Timestamp.valueOf(combodateD.getValue().atTime(LocalTime.MIDNIGHT));
  Date date = new Date();
+
         Timestamp ts = new Timestamp(date.getTime());
         
         if (ts.before(dated)) {
